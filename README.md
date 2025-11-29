@@ -7,3 +7,10 @@ Legacy Entity Manager
 | **GitHub** | [![Github Actions Build](https://github.com/WolfgangFahl/pylodentitymanager/actions/workflows/build.yml/badge.svg)](https://github.com/WolfgangFahl/pylodentitymanager/actions/workflows/build.yml) [![Release](https://img.shields.io/github/v/release/WolfgangFahl/pylodentitymanager)](https://github.com/WolfgangFahl/pylodentitymanager/releases) [![Contributors](https://img.shields.io/github/contributors/WolfgangFahl/pylodentitymanager)](https://github.com/WolfgangFahl/pylodentitymanager/graphs/contributors) [![Last Commit](https://img.shields.io/github/last-commit/WolfgangFahl/pylodentitymanager)](https://github.com/WolfgangFahl/pylodentitymanager/commits/) [![GitHub issues](https://img.shields.io/github/issues/WolfgangFahl/pylodentitymanager.svg)](https://github.com/WolfgangFahl/pylodentitymanager/issues) [![GitHub closed issues](https://img.shields.io/github/issues-closed/WolfgangFahl/pylodentitymanager.svg)](https://github.com/WolfgangFahl/pylodentitymanager/issues/?q=is%3Aissue+is%3Aclosed) |
 | **Code** | [![style-black](https://img.shields.io/badge/%20style-black-000000.svg)](https://github.com/psf/black) [![imports-isort](https://img.shields.io/badge/%20imports-isort-%231674b1)](https://pycqa.github.io/isort/) |
 | **Docs** | [![API Docs](https://img.shields.io/badge/API-Documentation-blue)](https://WolfgangFahl.github.io/pylodentitymanager/) [![formatter-docformatter](https://img.shields.io/badge/%20formatter-docformatter-fedcba.svg)](https://github.com/PyCQA/docformatter) [![style-google](https://img.shields.io/badge/%20style-google-3666d6.svg)](https://google.github.io/styleguide/pyguide.html#s3.8-comments-and-docstrings) |
+
+## Documentation
+[Wiki](https://wiki.bitplan.com/index.php/Pylodentitymanager)
+
+### Authors
+* [Tim Holzheim](https://www.semantic-mediawiki.org/wiki/Tim_Holzheim)
+* [Wolfgang Fahl](http://www.bitplan.com/Wolfgang_Fahl)
