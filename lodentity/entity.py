@@ -1,5 +1,4 @@
-"""
-Created on 2020-08-19
+"""Created on 2020-08-19.
 
 @author: wf
 """
@@ -7,18 +6,18 @@ Created on 2020-08-19
 import os
 import sys
 import time
-from lodentity.jsonable import JSONAble
-from lodentity.jsonpicklemixin import JsonPickleMixin
+
 from lodstorage.lod import LOD
 from lodstorage.sparql import SPARQL
 from lodstorage.sql import SQLDB
 from lodstorage.storageconfig import StorageConfig, StoreMode
 
+from lodentity.jsonable import JSONAble
+from lodentity.jsonpicklemixin import JsonPickleMixin
+
 
 class EntityManager:
-    """
-    generic entity manager
-    """
+    """Generic entity manager."""
 
     def __init__(
         self,
@@ -35,8 +34,7 @@ class EntityManager:
         listSeparator="⇹",
         debug=False,
     ):
-        """
-        Constructor
+        """Constructor.
 
         Args:
             name(string): name of this eventManager
@@ -85,13 +83,11 @@ class EntityManager:
         self.listSeparator = listSeparator
 
     def storeMode(self):
-        """
-        return my store mode
-        """
+        """Return my store mode."""
         return self.config.mode
 
     def showProgress(self, msg):
-        """display a progress message
+        """Display a progress message.
 
         Args:
           msg(string): the message to display
@@ -124,7 +120,7 @@ class EntityManager:
         return cachepath
 
     def removeCacheFile(self):
-        """remove my cache file"""
+        """Remove my cache file."""
         mode = self.config.mode
         if mode is StoreMode.JSON or mode is StoreMode.JSONPICKLE:
             cacheFile = self.getCacheFile(mode=mode)
@@ -132,8 +128,7 @@ class EntityManager:
                 os.remove(cacheFile)
 
     def getSQLDB(self, cacheFile):
-        """
-        get the SQL database for the given cacheFile
+        """Get the SQL database for the given cacheFile.
 
         Args:
             cacheFile(string): the file to get the SQL db from
@@ -152,8 +147,7 @@ class EntityManager:
         withDrop: bool = True,
         sampleRecordCount=-1,
     ):
-        """
-        initialize my sql DB
+        """Initialize my sql DB.
 
         Args:
             listOfDicts(list): the list of dicts to analyze for type information
@@ -185,8 +179,7 @@ class EntityManager:
         LOD.setNone(record, fields)
 
     def isCached(self):
-        """check whether there is a file containing cached
-        data for me"""
+        """Check whether there is a file containing cached data for me."""
         result = False
         config = self.config
         mode = self.config.mode
@@ -238,8 +231,7 @@ GROUP by ?source
         append=False,
         sampleRecordCount=-1,
     ):
-        """
-        get my entries from the cache or from the callback provided
+        """Get my entries from the cache or from the callback provided.
 
         Args:
             force(bool): force ignoring the cache
@@ -347,12 +339,10 @@ SELECT ?eventId ?acronym ?series ?title ?year ?country ?city ?startDate ?endDate
         return listOfDicts
 
     def getLoD(self):
-        """
-        Return the LoD of the entities in the list
+        """Return the LoD of the entities in the list.
 
         Return:
             list: a list of Dicts
-
         """
         lod = []
         for entity in self.getList():
@@ -369,8 +359,7 @@ SELECT ?eventId ?acronym ?series ?title ?year ?country ?city ?startDate ?endDate
         sampleRecordCount=-1,
         replace: bool = False,
     ) -> str:
-        """
-        store my list of dicts
+        """Store my list of dicts.
 
         Args:
             limit(int): maximum number of records to store per batch
@@ -405,8 +394,7 @@ SELECT ?eventId ?acronym ?series ?title ?year ?country ?city ?startDate ?endDate
         sampleRecordCount=1,
         replace: bool = False,
     ) -> str:
-        """
-        store my entities
+        """Store my entities.
 
         Args:
             listOfDicts(list): the list of dicts to store

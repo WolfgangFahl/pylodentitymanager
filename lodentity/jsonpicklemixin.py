@@ -5,16 +5,13 @@ import jsonpickle
 
 
 class JsonPickleMixin(object):
-    """
-    allow reading and writing derived objects from a jsonpickle file
-    """
+    """Allow reading and writing derived objects from a jsonpickle file."""
 
     debug = False
 
     @staticmethod
     def checkExtension(jsonFile: str, extension: str = ".json") -> str:
-        """
-        make sure the jsonFile has the given extension e.g. ".json"
+        """Make sure the jsonFile has the given extension e.g. ".json".
 
         Args:
             jsonFile(str): the jsonFile name - potentially without ".json" suffix
@@ -50,8 +47,7 @@ class JsonPickleMixin(object):
             return None
 
     def asJsonPickle(self) -> str:
-        """
-        convert me to JSON
+        """Convert me to JSON.
 
         Returns:
             str: a JSON String with my JSON representation
@@ -60,8 +56,8 @@ class JsonPickleMixin(object):
         return json
 
     def writeJsonPickle(self, jsonFileName: str, extension: str = ".jsonpickle"):
-        """
-        write me to the json file with the given name (optionally without postfix)
+        """Write me to the json file with the given name (optionally without
+        postfix)
 
         Args:
             jsonFileName(str): name of the file (optionally without ".json" postfix)

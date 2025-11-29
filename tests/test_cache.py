@@ -1,26 +1,22 @@
-"""
-Created on 2024-03-09
+"""Created on 2024-03-09.
 
 @author: wf
 """
 
-from lodentity.cache import CacheManager
-from lodstorage.sample2 import Royals, Sample
 from basemkit.basetest import Basetest
+from lodstorage.sample2 import Royals, Sample
+
+from lodentity.cache import CacheManager
 
 
 class TestCache(Basetest):
-    """
-    Tests the cache functionality
-    """
+    """Tests the cache functionality."""
 
     def setUp(self, debug=False, profile=True):
         Basetest.setUp(self, debug=debug, profile=profile)
 
     def testCache(self):
-        """
-        test cache handling
-        """
+        """Test cache handling."""
         caches = {}
         cm = CacheManager("test_cache")
         cm.base_dir = "/tmp/"

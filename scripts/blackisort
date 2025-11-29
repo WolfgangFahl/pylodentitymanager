@@ -1,7 +1,15 @@
 #!/bin/bash
-# WF 2025-11-28
+# WF 2024-01-10
 package=lodentity
+
+# Sort imports
 isort tests/*.py
-black tests/*.py
 isort $package/*.py
+
+# Format code
+black tests/*.py
 black $package/*.py
+
+# Format docstrings
+docformatter --in-place tests/*.py
+docformatter --in-place $package/*.py

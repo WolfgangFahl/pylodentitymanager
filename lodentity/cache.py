@@ -1,5 +1,4 @@
-"""
-Created on 2024-03-09
+"""Created on 2024-03-09.
 
 @author: wf
 
@@ -19,8 +18,7 @@ from orjson import orjson
 
 @lod_storable
 class Cache:
-    """
-    Represents cache metadata and its file extension.
+    """Represents cache metadata and its file extension.
 
     Attributes:
         name: The name of the cache.
@@ -37,8 +35,8 @@ class Cache:
     count: Optional[int] = None
 
     def set_path(self, base_path: str):
-        """
-        Set my path based on the given base_path and ensure the parent directory is created.
+        """Set my path based on the given base_path and ensure the parent
+        directory is created.
 
         Args:
             base_path (str): The base path where the directory should be created.
@@ -98,8 +96,7 @@ class CacheManager:
         return base_path
 
     def get_cache_by_name(self, lod_name, ext=".json") -> Cache:
-        """
-        Retrieves or creates a cache object by name and extension.
+        """Retrieves or creates a cache object by name and extension.
 
         Args:
             cache_name (str): The name of the cache to retrieve or create.
@@ -124,8 +121,8 @@ class CacheManager:
         cls: Optional[Type[YamlAble]] = None,
         count_attr: str = None,
     ) -> Union[List, Dict, None]:
-        """
-        Load data from a cache file. This method supports JSON and, if a relevant class is provided, other formats like YAML.
+        """Load data from a cache file. This method supports JSON and, if a
+        relevant class is provided, other formats like YAML.
 
         Args:
             lod_name (str): The name of the list of dicts or class instances to read from cache.
@@ -175,10 +172,9 @@ class CacheManager:
         ext: str = ".json",
         count_attr: str = None,
     ) -> Cache:
-        """
-        Stores data into a cache file, handling serialization based on the specified file extension.
-        Supports JSON and YAML formats, and custom serialization for classes that provide specific
-        serialization methods.
+        """Stores data into a cache file, handling serialization based on the
+        specified file extension. Supports JSON and YAML formats, and custom
+        serialization for classes that provide specific serialization methods.
 
         Args:
             cache_name (str): The identifier for the cache where the data will be stored.

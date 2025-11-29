@@ -1,4 +1,5 @@
-"""This module has a class JSONAble for serialization of tables/list of dicts to and from JSON encoding
+"""This module has a class JSONAble for serialization of tables/list of dicts
+to and from JSON encoding.
 
 Created on 2020-09-03
 
@@ -28,17 +29,13 @@ class JSONAbleSettings:
 
 
 class JSONAble(object):
-    """
-    mixin to allow classes to be JSON serializable see
+    """Mixin to allow classes to be JSON serializable see.
 
     - https://stackoverflow.com/questions/3768895/how-to-make-a-class-json-serializable
-
     """
 
     def __init__(self):
-        """
-        Constructor
-        """
+        """Constructor."""
 
     @classmethod
     def getPluralname(cls):
@@ -46,8 +43,7 @@ class JSONAble(object):
 
     @staticmethod
     def singleQuoteToDoubleQuote(singleQuoted, useRegex=False):
-        """
-        convert a single quoted string to a double quoted one
+        """Convert a single quoted string to a double quoted one.
 
         Args:
             singleQuoted (str): a single quoted string e.g.
@@ -64,7 +60,6 @@ class JSONAble(object):
         Note:
             see
             - https://stackoverflow.com/questions/55600788/python-replace-single-quotes-with-double-quotes-but-leave-ones-within-double-q
-
         """
         if useRegex:
             doubleQuoted = JSONAble.singleQuoteToDoubleQuoteUsingRegex(singleQuoted)
@@ -76,8 +71,8 @@ class JSONAble(object):
 
     @staticmethod
     def singleQuoteToDoubleQuoteUsingRegex(singleQuoted):
-        """
-        convert a single quoted string to a double quoted one using a regular expression
+        """Convert a single quoted string to a double quoted one using a
+        regular expression.
 
         Args:
             singleQuoted(string): a single quoted string e.g. {'cities': [{'name': "Upper Hell's Gate"}]}
@@ -92,8 +87,8 @@ class JSONAble(object):
 
     @staticmethod
     def singleQuoteToDoubleQuoteUsingBracketLoop(singleQuoted):
-        """
-        convert a single quoted string to a double quoted one using a regular expression
+        """Convert a single quoted string to a double quoted one using a
+        regular expression.
 
         Args:
             singleQuoted(string): a single quoted string e.g. {'cities': [{'name': "Upper Hell's Gate"}]}
@@ -102,7 +97,6 @@ class JSONAble(object):
             string: the double quoted version of the string e.g.
         Note:
             see https://stackoverflow.com/a/63862387/1497139
-
         """
         cList = list(singleQuoted)
         inDouble = False
@@ -120,9 +114,7 @@ class JSONAble(object):
         return doubleQuoted
 
     def getJsonTypeSamples(self):
-        """
-        does my class provide a "getSamples" method?
-        """
+        """Does my class provide a "getSamples" method?"""
         if hasattr(self, "__class__"):
             cls = self.__class__
             if isinstance(self, JSONAbleList) and not hasattr(cls, "getSamples"):
@@ -132,8 +124,7 @@ class JSONAble(object):
 
     @staticmethod
     def getJsonTypeSamplesForClass(cls):
-        """
-        return the type samples for the given class
+        """Return the type samples for the given class.
 
         Return:
             list: a list of dict that specify the types by example
@@ -146,8 +137,7 @@ class JSONAble(object):
 
     @staticmethod
     def readJsonFromFile(jsonFilePath):
-        """
-        read json string from the given jsonFilePath
+        """Read json string from the given jsonFilePath.
 
         Args:
             jsonFilePath(string): the path of the file where to read the result from
@@ -161,20 +151,17 @@ class JSONAble(object):
 
     @staticmethod
     def storeJsonToFile(jsonStr, jsonFilePath):
-        """
-        store the given json string to the given jsonFilePath
+        """Store the given json string to the given jsonFilePath.
 
         Args:
             jsonStr(string): the string to store
             jsonFilePath(string): the path of the file where to store the result
-
         """
         with open(jsonFilePath, "w") as jsonFile:
             jsonFile.write(jsonStr)
 
     def checkExtension(self, jsonFile: str, extension: str = ".json") -> str:
-        """
-        make sure the jsonFile has the given extension e.g. ".json"
+        """Make sure the jsonFile has the given extension e.g. ".json".
 
         Args:
             jsonFile(str): the jsonFile name - potentially without ".json" suffix
@@ -189,8 +176,7 @@ class JSONAble(object):
     def storeToJsonFile(
         self, jsonFile: str, extension: str = ".json", limitToSampleFields: bool = False
     ):
-        """
-        store me to the given jsonFile
+        """Store me to the given jsonFile.
 
         Args:
             jsonFile(str): the JSON file name (optionally without extension)
@@ -201,8 +187,7 @@ class JSONAble(object):
         JSONAble.storeJsonToFile(self.toJSON(limitToSampleFields), jsonFile)
 
     def restoreFromJsonFile(self, jsonFile: str):
-        """
-        restore me from the given jsonFile
+        """Restore me from the given jsonFile.
 
         Args:
             jsonFile(string): the jsonFile to restore me from
@@ -212,8 +197,7 @@ class JSONAble(object):
         self.fromJson(jsonStr)
 
     def fromJson(self, jsonStr):
-        """
-        initialize me from the given JSON string
+        """Initialize me from the given JSON string.
 
         Args:
             jsonStr(str): the JSON string
@@ -222,8 +206,7 @@ class JSONAble(object):
         self.fromDict(jsonMap)
 
     def fromDict(self, data: dict):
-        """
-        initialize me from the given data
+        """Initialize me from the given data.
 
         Args:
             data(dict): the dictionary to initialize me from
@@ -286,8 +269,7 @@ class JSONAble(object):
         return jsonStr
 
     def getJSONValue(self, v):
-        """
-        get the value of the given v as JSON
+        """Get the value of the given v as JSON.
 
         Args:
             v(object): the value to get
@@ -315,8 +297,8 @@ class JSONAble(object):
             return v
 
     def reprDict(self, srcDict):
-        """
-        get the given srcDict as new dict with fields being converted with getJSONValue
+        """Get the given srcDict as new dict with fields being converted with
+        getJSONValue.
 
         Args:
             scrcDict(dict): the source dictionary
@@ -330,8 +312,7 @@ class JSONAble(object):
         return d
 
     def asJSON(self, asString=True, data=None):
-        """
-        recursively return my dict elements
+        """Recursively return my dict elements.
 
         Args:
             asString(boolean): if True return my result as a string
@@ -347,9 +328,7 @@ class JSONAble(object):
 
 
 class JSONAbleList(JSONAble):
-    """
-    Container class
-    """
+    """Container class."""
 
     def __init__(
         self,
@@ -360,8 +339,7 @@ class JSONAbleList(JSONAble):
         handleInvalidListTypes=False,
         filterInvalidListTypes=False,
     ):
-        """
-        Constructor
+        """Constructor.
 
         Args:
             listName(str): the name of the list attribute to be used for storing the List
@@ -388,14 +366,11 @@ class JSONAbleList(JSONAble):
             self.__dict__[self.listName] = []
 
     def getList(self):
-        """
-        get my list
-        """
+        """Get my list."""
         return self.__dict__[self.listName]
 
     def setListFromLoD(self, lod: list) -> list:
-        """
-        set my list from the given list of dicts
+        """Set my list from the given list of dicts.
 
         Args:
             lod(list) a raw record list of dicts
@@ -415,8 +390,7 @@ class JSONAbleList(JSONAble):
         return self.getList()
 
     def getLoDfromJson(self, jsonStr: str, types=None, listName: str = None):
-        """
-        get a list of Dicts form the given JSON String
+        """Get a list of Dicts form the given JSON String.
 
         Args:
             jsonStr(str): the JSON string
@@ -441,8 +415,7 @@ class JSONAbleList(JSONAble):
         return lod
 
     def fromLoD(self, lod, append: bool = True, debug: bool = False):
-        """
-        load my entityList from the given list of dicts
+        """Load my entityList from the given list of dicts.
 
         Args:
             lod(list): the list of dicts to load
@@ -450,7 +423,6 @@ class JSONAbleList(JSONAble):
 
         Return:
             list: a list of errors (if any)
-
         """
         errors = []
         entityList = self.getList()
@@ -473,8 +445,7 @@ class JSONAbleList(JSONAble):
         return errors
 
     def getLookup(self, attrName: str, withDuplicates: bool = False):
-        """
-        create a lookup dictionary by the given attribute name
+        """Create a lookup dictionary by the given attribute name.
 
         Args:
             attrName(str): the attribute to lookup
@@ -486,25 +457,20 @@ class JSONAbleList(JSONAble):
         return LOD.getLookup(self.getList(), attrName, withDuplicates)
 
     def getJsonData(self):
-        """
-        get my Jsondata
-        """
+        """Get my Jsondata."""
         jsonData = {self.listName: self.__dict__[self.listName]}
         return jsonData
 
     def toJsonAbleValue(self, v):
-        """
-        make sure we don't store our meta information
-        clazz, tableName and listName but just the list we are holding
-        """
+        """Make sure we don't store our meta information clazz, tableName and
+        listName but just the list we are holding."""
         if v == self:
             return self.getJsonData()
         else:
             return super().toJsonAbleValue(v)
 
     def fromJson(self, jsonStr, types=None):
-        """
-        initialize me from the given JSON string
+        """Initialize me from the given JSON string.
 
         Args:
             jsonStr(str): the JSON string
@@ -518,15 +484,12 @@ class JSONAbleList(JSONAble):
         return super().asJSON(asString, data=jsonData)
 
     def restoreFromJsonFile(self, jsonFile: str) -> list:
-        """
-        read my list of dicts and restore it
-        """
+        """Read my list of dicts and restore it."""
         lod = self.readLodFromJsonFile(jsonFile)
         return self.setListFromLoD(lod)
 
     def restoreFromJsonStr(self, jsonStr: str) -> list:
-        """
-        restore me from the given jsonStr
+        """Restore me from the given jsonStr.
 
         Args:
             jsonStr(str): the json string to restore me from
@@ -535,8 +498,7 @@ class JSONAbleList(JSONAble):
         return self.setListFromLoD(lod)
 
     def readLodFromJsonFile(self, jsonFile: str, extension: str = ".json"):
-        """
-        read the list of dicts from the given jsonFile
+        """Read the list of dicts from the given jsonFile.
 
         Args:
             jsonFile(string): the jsonFile to read from
@@ -550,8 +512,7 @@ class JSONAbleList(JSONAble):
         return lod
 
     def readLodFromJsonStr(self, jsonStr) -> list:
-        """
-        restore me from the given jsonStr
+        """Restore me from the given jsonStr.
 
         Args:
             storeFilePrefix(string): the prefix for the JSON file name
@@ -572,8 +533,7 @@ class JSONAbleList(JSONAble):
 
 
 class Types(JSONAble):
-    """
-    Types
+    """Types.
 
     holds entity meta Info
 
@@ -590,8 +550,7 @@ class Types(JSONAble):
     }
 
     def __init__(self, name: str, warnOnUnsupportedTypes=True, debug=False):
-        """
-        Constructor
+        """Constructor.
 
         Args:
             name(str): the name of the type map
@@ -626,8 +585,7 @@ class Types(JSONAble):
         return types
 
     def addType(self, listName, field, valueType):
-        """
-        add the python type for the given field to the typeMap
+        """Add the python type for the given field to the typeMap.
 
         Args:
            listName(string): the name of the list of the field
@@ -642,8 +600,7 @@ class Types(JSONAble):
             typeMap[field] = valueType
 
     def getTypes(self, listName: str, sampleRecords: list, limit: int = 10):
-        """
-        determine the types for the given sample records
+        """Determine the types for the given sample records.
 
         Args:
             listName(str): the name of the list
@@ -655,15 +612,12 @@ class Types(JSONAble):
             self.getTypesForItems(listName, items, warnOnNone=len(sampleRecords) == 1)
 
     def getTypesForItems(self, listName: str, items: list, warnOnNone: bool = False):
-        """
-        get the types for the given items
-        side effect is setting my types
+        """Get the types for the given items side effect is setting my types.
 
         Args:
             listName(str): the name of the list
             items(list): a list of items
             warnOnNone(bool): if TRUE warn if an item value is None
-
         """
         for key, value in items:
             valueType = None
@@ -696,8 +650,7 @@ class Types(JSONAble):
                 self.addType(listName, key, valueType.__name__)
 
     def fixTypes(self, lod: list, listName: str):
-        """
-        fix the types in the given data structure
+        """Fix the types in the given data structure.
 
         Args:
             lod(list): a list of dicts
@@ -707,9 +660,7 @@ class Types(JSONAble):
             self.fixListOfDicts(self.typeMap[listName], lod)
 
     def getType(self, typeName):
-        """
-        get the type for the given type name
-        """
+        """Get the type for the given type name."""
         if typeName in Types.typeName2Type:
             return Types.typeName2Type[typeName]
         else:
@@ -718,9 +669,7 @@ class Types(JSONAble):
             return None
 
     def fixListOfDicts(self, typeMap, listOfDicts):
-        """
-        fix the type in the given list of Dicts
-        """
+        """Fix the type in the given list of Dicts."""
         for record in listOfDicts:
             for keyValue in record.items():
                 key, value = keyValue
